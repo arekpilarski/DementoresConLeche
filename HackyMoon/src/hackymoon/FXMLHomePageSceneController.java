@@ -5,8 +5,10 @@
  */
 package hackymoon;
 
+import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 /**
@@ -14,11 +16,19 @@ import javafx.fxml.Initializable;
  *
  * @author Arkadiusz
  */
-public class FXMLHomePageController implements Initializable {
+public class FXMLHomePageSceneController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
+    @FXML
+    private JFXButton signUpButton;
+    
+    @FXML
+    private void pressSignUpButton () {
+        
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

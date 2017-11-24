@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="507.0" prefWidth="804.0" style="-fx-background-color: #c1c1c1;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scoobyapp.FXMLHomePageController">
+<AnchorPane id="AnchorPane" prefHeight="507.0" prefWidth="804.0" style="-fx-background-color: #c1c1c1;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hackymoon.FXMLEventsSceneController">
    <children>
       <JFXButton layoutY="113.0" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #7d7d7d;" text="Account">
          <font>

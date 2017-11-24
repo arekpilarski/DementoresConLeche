@@ -15,11 +15,11 @@ import javafx.stage.Stage;
  *
  * @author Arkadiusz
  */
-public class ScoobyApp extends Application {
+public class HackyMoon extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLLogInScene.fxml"));
         
         Scene scene = new Scene(root);
         

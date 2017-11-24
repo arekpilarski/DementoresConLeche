@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="512.0" prefWidth="833.0" style="-fx-background-color: #c1c1c1;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hackymoon.FXMLSignUpSceneController">
+    <children>
+      <AnchorPane layoutX="469.0" layoutY="22.0" prefHeight="462.0" prefWidth="331.0" style="-fx-background-color: #959595;">
+         <children>
+            <Label layoutX="119.0" layoutY="24.0" text="Sign up">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <JFXButton layoutX="212.0" layoutY="401.0" prefHeight="31.0" prefWidth="70.0" style="-fx-background-color: #ababab;" text="Sign up">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="34.0" layoutY="73.0" text="Username">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="34.0" layoutY="138.0" text="Name">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="34.0" layoutY="199.0" text="Surname">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="34.0" layoutY="259.0" text="Phone number">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="34.0" layoutY="317.0" text="E-mail">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField layoutX="34.0" layoutY="103.0" prefHeight="26.0" prefWidth="267.0" />
+            <TextField layoutX="34.0" layoutY="166.0" prefHeight="26.0" prefWidth="267.0" />
+            <TextField layoutX="34.0" layoutY="228.0" prefHeight="26.0" prefWidth="267.0" />
+            <TextField layoutX="34.0" layoutY="286.0" prefHeight="26.0" prefWidth="267.0" />
+            <TextField layoutX="34.0" layoutY="344.0" prefHeight="26.0" prefWidth="267.0" />
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="426.0" fitWidth="432.0" layoutX="21.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/LogoImage.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="46.0" layoutY="26.0" text="Hacky Moon">
+         <font>
+            <Font size="56.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="21.0" layoutY="442.0" prefHeight="31.0" prefWidth="149.0" style="-fx-background-color: #959595;" text="Log in">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXButton>
+    </children>
+</AnchorPane>

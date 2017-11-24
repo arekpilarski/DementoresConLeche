@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="512.0" prefWidth="833.0" style="-fx-background-color: #c1c1c1;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scoobyapp.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="512.0" prefWidth="833.0" style="-fx-background-color: #c1c1c1;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hackymoon.FXMLLogInSceneController">
     <children>
       <AnchorPane layoutX="463.0" layoutY="64.0" prefHeight="384.0" prefWidth="331.0" style="-fx-background-color: #959595;">
          <children>
@@ -28,10 +28,20 @@
             <Label layoutX="50.0" layoutY="224.0" prefHeight="18.0" prefWidth="214.0" textAlignment="CENTER" />
          </children>
       </AnchorPane>
-      <ImageView fitHeight="455.0" fitWidth="442.0" layoutX="14.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="426.0" fitWidth="432.0" layoutX="21.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/LogoImage.png" />
          </image>
       </ImageView>
+      <Label layoutX="46.0" layoutY="26.0" text="Hacky Moon">
+         <font>
+            <Font size="56.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="21.0" layoutY="442.0" prefHeight="31.0" prefWidth="149.0" style="-fx-background-color: #959595;" text="Sign up!">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXButton>
     </children>
 </AnchorPane>

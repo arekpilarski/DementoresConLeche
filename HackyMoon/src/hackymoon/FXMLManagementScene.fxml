@@ -2,13 +2,13 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="507.0" prefWidth="804.0" style="-fx-background-color: #c1c1c1;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hackymoon.FXMLContactsSceneController">
+<AnchorPane id="AnchorPane" prefHeight="507.0" prefWidth="804.0" style="-fx-background-color: #c1c1c1;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hackymoon.FXMLManagementSceneController">
    <children>
       <JFXButton layoutY="113.0" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #7d7d7d;" text="Account">
          <font>
@@ -50,6 +50,43 @@
             <Font size="51.0" />
          </font>
       </Label>
-      <ListView layoutX="176.0" layoutY="112.0" prefHeight="360.0" prefWidth="563.0" />
+      <Label layoutX="172.0" layoutY="104.0" text="Create group">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="172.0" layoutY="144.0" text="Group name">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField layoutX="172.0" layoutY="169.0" prefHeight="26.0" prefWidth="309.0" />
+      <Label layoutX="172.0" layoutY="291.0" text="Group name">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="172.0" layoutY="246.0" prefHeight="31.0" prefWidth="150.0" text="Add to group">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="172.0" layoutY="364.0" text="Username">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField layoutX="172.0" layoutY="325.0" prefHeight="26.0" prefWidth="309.0" />
+      <TextField layoutX="172.0" layoutY="396.0" prefHeight="26.0" prefWidth="309.0" />
+      <JFXButton layoutX="413.0" layoutY="212.0" prefHeight="31.0" prefWidth="67.0" style="-fx-background-color: #959595;" text="Create">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="413.0" layoutY="441.0" prefHeight="31.0" prefWidth="67.0" style="-fx-background-color: #959595;" text="Add">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

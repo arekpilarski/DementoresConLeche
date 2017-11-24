@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="507.0" prefWidth="804.0" style="-fx-background-color: #c1c1c1;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scoobyapp.FXMLHomePageController">
+<AnchorPane id="AnchorPane" prefHeight="507.0" prefWidth="804.0" style="-fx-background-color: #c1c1c1;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hackymoon.FXMLHomePageSceneController">
    <children>
       <JFXButton layoutY="113.0" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #7d7d7d;" text="Account">
          <font>
@@ -59,11 +59,16 @@
       <Label layoutX="180.0" layoutY="160.0" text="Surname" />
       <Label layoutX="180.0" layoutY="210.0" prefHeight="18.0" prefWidth="63.0" text="Username" />
       <Label layoutX="180.0" layoutY="260.0" prefHeight="18.0" prefWidth="63.0" text="Group" />
-      <Label layoutX="180.0" layoutY="310.0" prefHeight="18.0" prefWidth="104.0" text="Profile description" />
+      <Label layoutX="175.0" layoutY="410.0" prefHeight="18.0" prefWidth="104.0" text="Profile description" />
       <Label layoutX="308.0" layoutY="110.0" prefHeight="18.0" prefWidth="255.0" />
       <Label layoutX="308.0" layoutY="159.0" prefHeight="18.0" prefWidth="255.0" />
-      <Label layoutX="180.0" layoutY="344.0" prefHeight="132.0" prefWidth="563.0" />
+      <Label layoutX="612.0" layoutY="278.0" prefHeight="198.0" prefWidth="168.0" />
       <Label layoutX="308.0" layoutY="260.0" prefHeight="18.0" prefWidth="255.0" />
       <Label layoutX="308.0" layoutY="210.0" prefHeight="18.0" prefWidth="255.0" />
+      <Label layoutX="180.0" layoutY="360.0" prefHeight="18.0" prefWidth="63.0" text="e-mail" />
+      <Label layoutX="180.0" layoutY="310.0" prefHeight="18.0" prefWidth="86.0" text="Phone number" />
+      <Label layoutX="308.0" layoutY="310.0" prefHeight="18.0" prefWidth="255.0" />
+      <Label layoutX="308.0" layoutY="364.0" prefHeight="18.0" prefWidth="255.0" />
+      <Label layoutX="308.0" layoutY="410.0" prefHeight="70.0" prefWidth="471.0" />
    </children>
 </AnchorPane>
