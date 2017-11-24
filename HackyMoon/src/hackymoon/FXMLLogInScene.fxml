@@ -19,7 +19,7 @@
                   <Font size="23.0" />
                </font>
             </Label>
-            <JFXButton layoutX="191.0" layoutY="242.0" prefHeight="31.0" prefWidth="70.0" style="-fx-background-color: #ababab;" text="Log in">
+            <JFXButton fx:id="logInButton" layoutX="191.0" layoutY="242.0" onAction="#pressLogInButton" prefHeight="31.0" prefWidth="70.0" style="-fx-background-color: #ababab;" text="Log in">
                <font>
                   <Font size="15.0" />
                </font>
@@ -38,7 +38,7 @@
             <Font size="56.0" />
          </font>
       </Label>
-      <JFXButton layoutX="21.0" layoutY="442.0" prefHeight="31.0" prefWidth="149.0" style="-fx-background-color: #959595;" text="Sign up!">
+      <JFXButton fx:id="signUpButton" layoutX="21.0" layoutY="442.0" onAction="#pressSignUpButton" prefHeight="31.0" prefWidth="149.0" style="-fx-background-color: #959595;" text="Sign up!">
          <font>
             <Font size="15.0" />
          </font>

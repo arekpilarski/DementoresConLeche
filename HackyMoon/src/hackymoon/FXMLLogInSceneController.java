@@ -26,12 +26,6 @@ import javafx.stage.Stage;
 public class FXMLLogInSceneController implements Initializable {
     
     @FXML
-    private Label label;
-    
-    @FXML
-    private JFXButton signUpButton;
-    
-    @FXML
     private void pressSignUpButton(ActionEvent event) throws IOException {
         Parent logInSceneParent = FXMLLoader.load(getClass().getResource("FXMLSignUpScene.fxml"));
         Scene signUpScene = new Scene (logInSceneParent);
@@ -41,6 +35,19 @@ public class FXMLLogInSceneController implements Initializable {
         appStage.setScene(signUpScene);
         appStage.show();
     }
+    
+    @FXML
+    private void pressLogInButton(ActionEvent event) throws IOException {
+        Parent logInSceneParent = FXMLLoader.load(getClass().getResource("FXMLHomePageScene.fxml"));
+        Scene homePageScene = new Scene (logInSceneParent);
+        Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        
+        appStage.hide();
+        appStage.setScene(homePageScene);
+        appStage.show();
+    }
+    
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

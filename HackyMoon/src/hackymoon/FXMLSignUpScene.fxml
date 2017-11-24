@@ -10,6 +10,11 @@
 
 <AnchorPane id="AnchorPane" prefHeight="512.0" prefWidth="833.0" style="-fx-background-color: #c1c1c1;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hackymoon.FXMLSignUpSceneController">
     <children>
+      <ImageView fx:id="backButton" fitHeight="426.0" fitWidth="432.0" layoutX="21.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/LogoImage.png" />
+         </image>
+      </ImageView>
       <AnchorPane layoutX="469.0" layoutY="22.0" prefHeight="462.0" prefWidth="331.0" style="-fx-background-color: #959595;">
          <children>
             <Label layoutX="119.0" layoutY="24.0" text="Sign up">
@@ -54,17 +59,12 @@
             <TextField layoutX="34.0" layoutY="344.0" prefHeight="26.0" prefWidth="267.0" />
          </children>
       </AnchorPane>
-      <ImageView fitHeight="426.0" fitWidth="432.0" layoutX="21.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/LogoImage.png" />
-         </image>
-      </ImageView>
       <Label layoutX="46.0" layoutY="26.0" text="Hacky Moon">
          <font>
             <Font size="56.0" />
          </font>
       </Label>
-      <JFXButton layoutX="21.0" layoutY="442.0" prefHeight="31.0" prefWidth="149.0" style="-fx-background-color: #959595;" text="Log in">
+      <JFXButton fx:id="backButton" layoutX="21.0" layoutY="441.0" onAction="#pressBackButton" prefHeight="31.0" prefWidth="86.0" style="-fx-background-color: #959595;" text="Back">
          <font>
             <Font size="15.0" />
          </font>
