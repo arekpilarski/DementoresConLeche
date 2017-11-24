@@ -19,6 +19,8 @@ import java.io.File;
 import java.net.*;
 import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -84,6 +86,7 @@ class SingleService
     
     private DataInputStream dataInputStream;
     
+    private DataOutputStream dataOutputStream;
 
     public SingleService(Socket socket) throws IOException {
         this.socket = socket;
@@ -95,6 +98,7 @@ class SingleService
                 new InputStreamReader(
                         socket.getInputStream()));
         dataInputStream = new DataInputStream(socket.getInputStream());
+        dataOutputStream = new DataOutputStream(socket.getOutputStream());
     }
     
     public void addResourceToDatabase(String fileName, String fileExtension, byte[] data)
@@ -120,22 +124,56 @@ class SingleService
                     messageOutput.println("Give location of file to send: ");
                     
                     while(!commandInput.ready()) {}
-                    String filePath = commandInput.readLine();
+                    String fileName = commandInput.readLine();
                     
-                    if(!filePath.toUpperCase().equals("NOPE"))
+                    if(!fileName.toUpperCase().equals("NOPE"))
                     {
-                        while(!commandInput.ready()) {}
-                        String fileName = commandInput.readLine();
-                        while(!commandInput.ready()) {}
-                        String fileExtension = commandInput.readLine();
-                        
+                        String fileExtension = "";
+
+                        int i = fileName.lastIndexOf('.');
+                        if (i > 0) 
+                        {
+                            fileExtension = fileName.substring(i+1);
+                        }
+
                         int len = dataInputStream.readInt();
                         byte[] data = new byte[len];
                         dataInputStream.readFully(data);
 
+                        FileOutputStream fileToStore = new FileOutputStream("C:/Users/antek/Desktop/" + fileName);
+                        fileToStore.write(data);
+                        fileToStore.close();
+                        
                         addResourceToDatabase(fileName, fileExtension, data);
                         messageOutput.println("OK");
-                        }
+                    }
+                }
+                else if(str.toUpperCase().equals("GET"))
+                {
+                    messageOutput.println("GET");
+                    messageOutput.println("Give name of file to get: ");
+                    
+                    while(!commandInput.ready()) {}
+                    String fileName = commandInput.readLine();
+                    
+                    File fileToRecieve = new File("C:/Users/antek/Desktop/" + fileName);
+                    
+                    if(fileToRecieve.exists())
+                    {
+                        messageOutput.println("EXISTS");
+                        
+                        Path path;
+                        path = Paths.get(fileToRecieve.getPath());
+                        byte[] data = Files.readAllBytes(path);
+                    
+                        dataOutputStream.writeInt(data.length);
+                        dataOutputStream.write(data, 0, data.length);
+                    
+                    }
+                    else
+                    {
+                        messageOutput.println("NOPE");
+                    }
                 }
                 System.out.println("Command: " + str);
             }

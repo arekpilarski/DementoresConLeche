@@ -22,6 +22,8 @@ public class ScoobyClient
     
     private DataOutputStream dataOutputStream;
     
+    private DataInputStream dataInputStream;
+    
     public ScoobyClient() throws IOException
     {
         socket = new Socket("localhost", 8888);
@@ -34,6 +36,7 @@ public class ScoobyClient
                         new OutputStreamWriter(
                                 socket.getOutputStream())), true);
         dataOutputStream = new DataOutputStream(socket.getOutputStream());
+        dataInputStream = new DataInputStream(socket.getInputStream());
     }
     
     public static void main(String[] args) throws IOException 
@@ -62,17 +65,8 @@ public class ScoobyClient
                 
                 if(fileToSend.exists())
                 {
-                    client.commandOutput.println(filePath);
                     client.commandOutput.println(fileToSend.getName());
                     
-                    String extension = "";
-
-                    int i = filePath.lastIndexOf('.');
-                    if (i > 0) 
-                    {
-                        extension = filePath.substring(i+1);
-                    }
-                    client.commandOutput.println(extension);
                     
                     Path path;
                     path = Paths.get(filePath);
@@ -94,8 +88,29 @@ public class ScoobyClient
             {
                 while(!client.messageInput.ready()) {};
                 serverMessage = client.messageInput.readLine();
+                System.out.println(serverMessage);
                 
+                String fileName = client.commandReader.readLine();
+                client.commandOutput.println(fileName);
                 
+                while(!client.messageInput.ready()) {};
+                serverMessage = client.messageInput.readLine();
+                if(serverMessage.toUpperCase().equals("EXISTS"))
+                {
+                    int len = client.dataInputStream.readInt();
+                    byte[] data = new byte[len];
+                    client.dataInputStream.readFully(data);
+                
+                    FileOutputStream fileToStore = new FileOutputStream(System.getProperty("user.dir") + "/received_" + fileName);
+                    fileToStore.write(data);
+                    fileToStore.close();
+                    
+                    System.out.println("Got file!");
+                }
+                else
+                {
+                    System.out.println("File not found on server!");
+                }
             }
         }
         client.socket.close();
