@@ -101,11 +101,70 @@ class SingleService
         dataOutputStream = new DataOutputStream(socket.getOutputStream());
     }
     
-    public void addResourceToDatabase(String fileName, String fileExtension, byte[] data)
+    private void addResourceToDatabase(String fileName, String fileExtension, byte[] data)
     {
         System.out.println("File to be added to database!");
         System.out.println(fileName);
         System.out.println(fileExtension);
+    }
+    
+    private void acquireFileFromClient() throws IOException
+    {
+        messageOutput.println("SEND");
+        messageOutput.println("Give location of file to send: ");
+
+        while(!commandInput.ready()) {}
+        String fileName = commandInput.readLine();
+
+        if(!fileName.toUpperCase().equals("NOPE"))
+        {
+            String fileExtension = "";
+
+            int i = fileName.lastIndexOf('.');
+            if (i > 0) 
+            {
+                fileExtension = fileName.substring(i+1);
+            }
+
+            int len = dataInputStream.readInt();
+            byte[] data = new byte[len];
+            dataInputStream.readFully(data);
+
+            FileOutputStream fileToStore = new FileOutputStream("C:/Users/antek/Desktop/" + fileName);
+            fileToStore.write(data);
+            fileToStore.close();
+
+            addResourceToDatabase(fileName, fileExtension, data);
+            messageOutput.println("OK");
+        }
+    }
+    
+    private void sendFileToClient() throws IOException
+    {
+        messageOutput.println("GET");
+        messageOutput.println("Give name of file to get: ");
+
+        while(!commandInput.ready()) {}
+        String fileName = commandInput.readLine();
+
+        File fileToRecieve = new File("C:/Users/antek/Desktop/" + fileName);
+
+        if(fileToRecieve.exists())
+        {
+            messageOutput.println("EXISTS");
+
+            Path path;
+            path = Paths.get(fileToRecieve.getPath());
+            byte[] data = Files.readAllBytes(path);
+
+            dataOutputStream.writeInt(data.length);
+            dataOutputStream.write(data, 0, data.length);
+
+        }
+        else
+        {
+            messageOutput.println("NOPE");
+        }
     }
 
     public void realize() {
@@ -120,60 +179,11 @@ class SingleService
                 }
                 else if (str.toUpperCase().equals("SEND"))
                 {
-                    messageOutput.println("SEND");
-                    messageOutput.println("Give location of file to send: ");
-                    
-                    while(!commandInput.ready()) {}
-                    String fileName = commandInput.readLine();
-                    
-                    if(!fileName.toUpperCase().equals("NOPE"))
-                    {
-                        String fileExtension = "";
-
-                        int i = fileName.lastIndexOf('.');
-                        if (i > 0) 
-                        {
-                            fileExtension = fileName.substring(i+1);
-                        }
-
-                        int len = dataInputStream.readInt();
-                        byte[] data = new byte[len];
-                        dataInputStream.readFully(data);
-
-                        FileOutputStream fileToStore = new FileOutputStream("C:/Users/antek/Desktop/" + fileName);
-                        fileToStore.write(data);
-                        fileToStore.close();
-                        
-                        addResourceToDatabase(fileName, fileExtension, data);
-                        messageOutput.println("OK");
-                    }
+                    acquireFileFromClient();
                 }
                 else if(str.toUpperCase().equals("GET"))
                 {
-                    messageOutput.println("GET");
-                    messageOutput.println("Give name of file to get: ");
-                    
-                    while(!commandInput.ready()) {}
-                    String fileName = commandInput.readLine();
-                    
-                    File fileToRecieve = new File("C:/Users/antek/Desktop/" + fileName);
-                    
-                    if(fileToRecieve.exists())
-                    {
-                        messageOutput.println("EXISTS");
-                        
-                        Path path;
-                        path = Paths.get(fileToRecieve.getPath());
-                        byte[] data = Files.readAllBytes(path);
-                    
-                        dataOutputStream.writeInt(data.length);
-                        dataOutputStream.write(data, 0, data.length);
-                    
-                    }
-                    else
-                    {
-                        messageOutput.println("NOPE");
-                    }
+                    sendFileToClient();
                 }
                 System.out.println("Command: " + str);
             }

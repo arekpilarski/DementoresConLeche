@@ -26,7 +26,7 @@ public class ScoobyClient
     
     public ScoobyClient() throws IOException
     {
-        socket = new Socket("localhost", 8888);
+        socket = new Socket("10.5.0.37", 8888);
         commandReader = new BufferedReader(new InputStreamReader(System.in));
         messageInput = new BufferedReader(
                 new InputStreamReader(
@@ -37,6 +37,67 @@ public class ScoobyClient
                                 socket.getOutputStream())), true);
         dataOutputStream = new DataOutputStream(socket.getOutputStream());
         dataInputStream = new DataInputStream(socket.getInputStream());
+    }
+    
+    public void sendFileToServer() throws IOException
+    {
+        while(!messageInput.ready()) {};
+        String serverMessage = messageInput.readLine();
+        System.out.println(serverMessage);
+
+        String filePath = commandReader.readLine();
+
+        File fileToSend = new File(filePath);
+
+        if(fileToSend.exists())
+        {
+            commandOutput.println(fileToSend.getName());
+
+
+            Path path;
+            path = Paths.get(filePath);
+            byte[] data = Files.readAllBytes(path);
+
+            dataOutputStream.writeInt(data.length);
+            dataOutputStream.write(data, 0, data.length);
+
+            while(!messageInput.ready()) {};
+            serverMessage = messageInput.readLine();
+            System.out.println(serverMessage);
+        }
+        else
+        {
+            commandOutput.println("NOPE");
+        }
+    }
+    
+    public void acquireFileFromServer() throws IOException
+    {
+        while(!messageInput.ready()) {};
+        String serverMessage = messageInput.readLine();
+        System.out.println(serverMessage);
+
+        String fileName = commandReader.readLine();
+        commandOutput.println(fileName);
+
+        while(!messageInput.ready()) {};
+        serverMessage = messageInput.readLine();
+        if(serverMessage.toUpperCase().equals("EXISTS"))
+        {
+            int len = dataInputStream.readInt();
+            byte[] data = new byte[len];
+            dataInputStream.readFully(data);
+
+            FileOutputStream fileToStore = new FileOutputStream(System.getProperty("user.dir") + "/received_" + fileName);
+            fileToStore.write(data);
+            fileToStore.close();
+
+            System.out.println("Got file!");
+        }
+        else
+        {
+            System.out.println("File not found on server!");
+        }
     }
     
     public static void main(String[] args) throws IOException 
@@ -55,62 +116,11 @@ public class ScoobyClient
             }
             else if(clientString.toUpperCase().equals("SEND"))
             {
-                while(!client.messageInput.ready()) {};
-                serverMessage = client.messageInput.readLine();
-                System.out.println(serverMessage);
-            
-                String filePath = client.commandReader.readLine();
-                
-                File fileToSend = new File(filePath);
-                
-                if(fileToSend.exists())
-                {
-                    client.commandOutput.println(fileToSend.getName());
-                    
-                    
-                    Path path;
-                    path = Paths.get(filePath);
-                    byte[] data = Files.readAllBytes(path);
-                    
-                    client.dataOutputStream.writeInt(data.length);
-                    client.dataOutputStream.write(data, 0, data.length);
-                    
-                    while(!client.messageInput.ready()) {};
-                    serverMessage = client.messageInput.readLine();
-                    System.out.println(serverMessage);
-                }
-                else
-                {
-                    client.commandOutput.println("NOPE");
-                }
+                client.sendFileToServer();
             }
             else if(clientString.toUpperCase().equals("GET"))
             {
-                while(!client.messageInput.ready()) {};
-                serverMessage = client.messageInput.readLine();
-                System.out.println(serverMessage);
                 
-                String fileName = client.commandReader.readLine();
-                client.commandOutput.println(fileName);
-                
-                while(!client.messageInput.ready()) {};
-                serverMessage = client.messageInput.readLine();
-                if(serverMessage.toUpperCase().equals("EXISTS"))
-                {
-                    int len = client.dataInputStream.readInt();
-                    byte[] data = new byte[len];
-                    client.dataInputStream.readFully(data);
-                
-                    FileOutputStream fileToStore = new FileOutputStream(System.getProperty("user.dir") + "/received_" + fileName);
-                    fileToStore.write(data);
-                    fileToStore.close();
-                    
-                    System.out.println("Got file!");
-                }
-                else
-                {
-                    System.out.println("File not found on server!");
-                }
             }
         }
         client.socket.close();
