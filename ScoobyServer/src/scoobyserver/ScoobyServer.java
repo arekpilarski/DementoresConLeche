@@ -130,7 +130,8 @@ class SingleService
             byte[] data = new byte[len];
             dataInputStream.readFully(data);
 
-            FileOutputStream fileToStore = new FileOutputStream("C:/Users/antek/Desktop/" + fileName);
+            FileOutputStream fileToStore = new FileOutputStream(System.getProperty("user.dir") + "/" + fileName);
+            
             fileToStore.write(data);
             fileToStore.close();
 
@@ -142,12 +143,24 @@ class SingleService
     private void sendFileToClient() throws IOException
     {
         messageOutput.println("GET");
+        messageOutput.println("LIST");
+        File dir = new File(System.getProperty("user.dir"));
+        File[] dirList = dir.listFiles();
+        for(File child : dirList)
+        {
+            messageOutput.println(child.getName());
+        }
+        messageOutput.println("ENDLIST");
+        
         messageOutput.println("Give name of file to get: ");
 
+        
+            
+        
         while(!commandInput.ready()) {}
         String fileName = commandInput.readLine();
 
-        File fileToRecieve = new File("C:/Users/antek/Desktop/" + fileName);
+        File fileToRecieve = new File(System.getProperty("user.dir") + "/" + fileName);
 
         if(fileToRecieve.exists())
         {

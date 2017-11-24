@@ -75,6 +75,24 @@ public class ScoobyClient
     {
         while(!messageInput.ready()) {};
         String serverMessage = messageInput.readLine();
+        if(serverMessage.toUpperCase().equals("LIST"))
+        {
+            while(true)
+            {
+                while(!messageInput.ready()) {};
+                serverMessage = messageInput.readLine();
+                if(!serverMessage.toUpperCase().equals("ENDLIST"))
+                {
+                    System.out.println(serverMessage);
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+        while(!messageInput.ready()) {};
+        serverMessage = messageInput.readLine();
         System.out.println(serverMessage);
 
         String fileName = commandReader.readLine();
