@@ -22,7 +22,7 @@
                   <Font size="23.0" />
                </font>
             </Label>
-            <JFXButton layoutX="212.0" layoutY="401.0" prefHeight="31.0" prefWidth="86.0" style="-fx-background-color: #ababab;" text="Sign up">
+            <JFXButton layoutX="212.0" layoutY="401.0" onAction="#signUpButton" prefHeight="31.0" prefWidth="86.0" style="-fx-background-color: #ababab;" text="Sign up">
                <font>
                   <Font size="15.0" />
                </font>
@@ -42,7 +42,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="34.0" layoutY="259.0" text="Phone number">
+            <Label layoutX="34.0" layoutY="259.0" text="Password">
                <font>
                   <Font size="15.0" />
                </font>
@@ -52,11 +52,12 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="34.0" layoutY="103.0" prefHeight="26.0" prefWidth="267.0" />
-            <TextField layoutX="34.0" layoutY="166.0" prefHeight="26.0" prefWidth="267.0" />
-            <TextField layoutX="34.0" layoutY="228.0" prefHeight="26.0" prefWidth="267.0" />
-            <TextField layoutX="34.0" layoutY="286.0" prefHeight="26.0" prefWidth="267.0" />
-            <TextField layoutX="34.0" layoutY="344.0" prefHeight="26.0" prefWidth="267.0" />
+            <TextField fx:id="usernameField" layoutX="34.0" layoutY="103.0" prefHeight="26.0" prefWidth="267.0" />
+            <TextField fx:id="nameField" layoutX="34.0" layoutY="166.0" prefHeight="26.0" prefWidth="267.0" />
+            <TextField fx:id="surnameField" layoutX="34.0" layoutY="228.0" prefHeight="26.0" prefWidth="267.0" />
+            <TextField fx:id="mailField" layoutX="34.0" layoutY="344.0" prefHeight="26.0" prefWidth="267.0" />
+            <TextField fx:id="passwordField" layoutX="34.0" layoutY="286.0" prefHeight="26.0" prefWidth="267.0" />
+            <Label fx:id="signUpMessage" layoutX="34.0" layoutY="378.0" prefHeight="18.0" prefWidth="267.0" />
          </children>
       </AnchorPane>
       <Label layoutX="46.0" layoutY="26.0" text="Hacky Moon">

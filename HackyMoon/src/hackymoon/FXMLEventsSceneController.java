@@ -122,6 +122,87 @@ public class FXMLEventsSceneController implements Initializable {
     private TextField eventDescription;
     
     @FXML
+    private TextField eventID;
+    
+    @FXML
+    private void deleteEventButton (ActionEvent event) throws IOException{
+        Socket socket = new Socket("10.5.0.45", 8888);
+            BufferedReader commandReader = new BufferedReader(new InputStreamReader(System.in));
+            BufferedReader messageInput = new BufferedReader(
+                    new InputStreamReader(
+                            socket.getInputStream()));
+            PrintWriter commandOutput = new PrintWriter(
+                    new BufferedWriter(
+                            new OutputStreamWriter(
+                                    socket.getOutputStream())), true);
+            DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
+            DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
+        try {
+            
+            commandOutput.println("DELETEEVENT");
+            while (!messageInput.ready()) {
+            };
+            String serverMessage = messageInput.readLine();
+            if (serverMessage.toUpperCase().equals("DELETEEVENT")) {
+                commandOutput.println(eventID.getText());
+                System.out.println(eventID.getText());
+                
+                while (!messageInput.ready()) {
+                };
+                serverMessage = messageInput.readLine();
+                if (serverMessage.toUpperCase().equals("OK")) {
+                    System.out.println("Event delete");
+                }
+            }
+            
+        } catch (Exception e) {
+
+        }
+        try {
+           
+            List<String> list = new ArrayList();
+            commandOutput.println("GETEVENTS");
+            while (!messageInput.ready()) {
+            };
+            String serverMessage = messageInput.readLine();
+            if (serverMessage.toUpperCase().equals("GETEVENTS")) {
+                while (!messageInput.ready()) {
+                };
+                serverMessage = messageInput.readLine();
+                if ("STARTGETEVENTS".equals(serverMessage)){
+                    while(true){
+                        String complexData = "";
+                        while (!messageInput.ready()) {
+                        };
+                        serverMessage = messageInput.readLine();
+                        if(serverMessage.equals("ENDGETEVENTS"))
+                            break;
+                        complexData+=serverMessage + " ";
+                        while (!messageInput.ready()) {
+                        };
+                        serverMessage = messageInput.readLine();
+                        complexData+=serverMessage + " ";
+                        while (!messageInput.ready()) {
+                        };
+                        serverMessage = messageInput.readLine();
+                        complexData+=serverMessage + " ";
+                        
+                        list.add(complexData);
+                    }
+                }
+
+                ObservableList<String> names = FXCollections.observableArrayList(list);
+                    eventsList.setItems(names);
+              
+                
+            }
+           commandOutput.println("QUIT");
+        } catch (Exception e) {
+
+        }
+    }
+    
+    @FXML
     private void addEventButton (ActionEvent event) {
         try {
             Socket socket = new Socket("10.5.0.45", 8888);
@@ -142,8 +223,11 @@ public class FXMLEventsSceneController implements Initializable {
             String serverMessage = messageInput.readLine();
             if (serverMessage.toUpperCase().equals("ADDEVENT")) {
                 commandOutput.println(eventTitle.getText());
-                commandOutput.println(eventDate.getPromptText());
+                System.out.println(eventTitle.getText());
+                commandOutput.println(eventDate.getValue());
+                System.out.println(eventDate.getValue());
                 commandOutput.println(eventDescription.getText());
+                System.out.println(eventDescription.getText());
                 while (!messageInput.ready()) {
                 };
                 serverMessage = messageInput.readLine();
@@ -155,6 +239,7 @@ public class FXMLEventsSceneController implements Initializable {
         } catch (Exception e) {
 
         }
+        
     }
     
     @FXML
@@ -211,7 +296,7 @@ public class FXMLEventsSceneController implements Initializable {
               
                 
             }
-           // commandOutput.println("QUIT");
+           commandOutput.println("QUIT");
         } catch (Exception e) {
 
         }

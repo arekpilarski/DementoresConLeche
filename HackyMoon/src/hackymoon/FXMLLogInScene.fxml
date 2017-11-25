@@ -13,20 +13,21 @@
     <children>
       <AnchorPane layoutX="463.0" layoutY="64.0" prefHeight="384.0" prefWidth="331.0" style="-fx-background-color: #959595;">
          <children>
-            <JFXTextField layoutX="47.0" layoutY="116.0" prefHeight="26.0" prefWidth="214.0" promptText="username" />
+            <JFXTextField fx:id="usernameField" layoutX="47.0" layoutY="116.0" prefHeight="26.0" prefWidth="214.0" promptText="username" />
             <Label layoutX="119.0" layoutY="24.0" text="Sign in">
                <font>
                   <Font size="23.0" />
                </font>
             </Label>
-            <JFXButton fx:id="logInButton" layoutX="191.0" layoutY="242.0" onAction="#pressLogInButton" prefHeight="31.0" prefWidth="70.0" style="-fx-background-color: #ababab;" text="Log in">
+            <JFXButton fx:id="logInButton" layoutX="191.0" layoutY="254.0" onAction="#pressLogInButton" prefHeight="31.0" prefWidth="70.0" style="-fx-background-color: #ababab;" text="Log in">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXButton>
               <Label fx:id="label" layoutX="119.0" layoutY="224.0" minHeight="16" minWidth="69" />
             <Label layoutX="50.0" layoutY="224.0" prefHeight="18.0" prefWidth="214.0" textAlignment="CENTER" />
-            <JFXPasswordField layoutX="47.0" layoutY="180.0" prefHeight="26.0" prefWidth="214.0" promptText="password" />
+            <JFXPasswordField fx:id="passwordField" layoutX="47.0" layoutY="180.0" prefHeight="26.0" prefWidth="214.0" promptText="password" />
+            <Label fx:id="messageError" layoutX="50.0" layoutY="224.0" prefHeight="18.0" prefWidth="214.0" />
          </children>
       </AnchorPane>
       <ImageView fitHeight="426.0" fitWidth="432.0" layoutX="21.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">

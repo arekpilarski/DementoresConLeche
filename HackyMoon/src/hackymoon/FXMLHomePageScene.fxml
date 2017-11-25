@@ -58,17 +58,12 @@
       <Label layoutX="180.0" layoutY="110.0" prefHeight="26.0" prefWidth="40.0" text="Name" />
       <Label layoutX="180.0" layoutY="160.0" text="Surname" />
       <Label layoutX="180.0" layoutY="210.0" prefHeight="18.0" prefWidth="73.0" text="Username" />
-      <Label layoutX="180.0" layoutY="260.0" prefHeight="18.0" prefWidth="63.0" text="Group" />
-      <Label layoutX="175.0" layoutY="410.0" prefHeight="18.0" prefWidth="126.0" text="Profile description" />
-      <Label layoutX="308.0" layoutY="110.0" prefHeight="18.0" prefWidth="255.0" />
-      <Label layoutX="308.0" layoutY="159.0" prefHeight="18.0" prefWidth="255.0" />
+      <Label fx:id="nameField" layoutX="308.0" layoutY="110.0" prefHeight="18.0" prefWidth="255.0" />
+      <Label fx:id="surnameField" layoutX="308.0" layoutY="159.0" prefHeight="18.0" prefWidth="255.0" />
       <Label layoutX="612.0" layoutY="278.0" prefHeight="198.0" prefWidth="168.0" />
-      <Label layoutX="308.0" layoutY="260.0" prefHeight="18.0" prefWidth="255.0" />
-      <Label layoutX="308.0" layoutY="210.0" prefHeight="18.0" prefWidth="255.0" />
-      <Label layoutX="180.0" layoutY="360.0" prefHeight="18.0" prefWidth="63.0" text="E-mail" />
-      <Label layoutX="180.0" layoutY="310.0" prefHeight="18.0" prefWidth="112.0" text="Phone number" />
-      <Label layoutX="308.0" layoutY="310.0" prefHeight="18.0" prefWidth="255.0" />
+      <Label fx:id="usernameField" layoutX="308.0" layoutY="210.0" prefHeight="18.0" prefWidth="255.0" />
+      <Label layoutX="180.0" layoutY="259.0" prefHeight="18.0" prefWidth="63.0" text="E-mail" />
       <Label layoutX="308.0" layoutY="364.0" prefHeight="18.0" prefWidth="255.0" />
-      <Label layoutX="308.0" layoutY="410.0" prefHeight="70.0" prefWidth="471.0" />
+      <Label fx:id="mailField" layoutX="308.0" layoutY="259.0" prefHeight="18.0" prefWidth="255.0" />
    </children>
 </AnchorPane>
