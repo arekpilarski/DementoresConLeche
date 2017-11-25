@@ -6,6 +6,7 @@ import com.hackmonDB.db.controller.GroupController;
 import com.hackmonDB.db.controller.ResourceController;
 import com.hackmonDB.db.controller.TaskController;
 import com.hackmonDB.db.controller.UserController; 
+import com.hackmonDB.db.controller.userGroupController;
 import com.hackmonDB.db.entity.User; 
 import com.hackmonDB.db.repository.EventRepository; 
 import java.io.IOException;
@@ -30,6 +31,8 @@ public class HackmonDbApplication implements CommandLineRunner{
     private EventController eventController;
     @Autowired
     private ResourceController resourceController;
+    @Autowired
+    private userGroupController  userGroupController;
  
   public static void main(String[] args) { 
       SpringApplication app = new SpringApplication(HackmonDbApplication.class); 
@@ -43,12 +46,12 @@ public class HackmonDbApplication implements CommandLineRunner{
            Socket socket = null;
        ScoobyServer tcpServer = null;
         try {
-            tcpServer = new ScoobyServer(userController,taskController,groupController, eventController,resourceController);
+            tcpServer = new ScoobyServer(userController,taskController,groupController, eventController,resourceController,userGroupController);
             System.out.println("Server started");
 
             while (true) {
                 socket = tcpServer.serverSocket.accept();
-                SingleService singleService = new SingleService(socket,tcpServer.userController,tcpServer.taskController,tcpServer.groupController, tcpServer.eventController,tcpServer.resourceController);
+                SingleService singleService = new SingleService(socket,tcpServer.userController,tcpServer.taskController,tcpServer.groupController, tcpServer.eventController,tcpServer.resourceController,tcpServer.userGroupController);
                 singleService.realize();
             }
         } catch (IOException e) {

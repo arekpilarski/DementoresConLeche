@@ -10,11 +10,13 @@ import com.hackmonDB.db.controller.GroupController;
 import com.hackmonDB.db.controller.ResourceController;
 import com.hackmonDB.db.controller.TaskController;
 import com.hackmonDB.db.controller.UserController;
+import com.hackmonDB.db.controller.userGroupController;
 import com.hackmonDB.db.entity.Event;
 import com.hackmonDB.db.entity.Group;
 import com.hackmonDB.db.entity.Resource;
 import com.hackmonDB.db.entity.Task;
 import com.hackmonDB.db.entity.User;
+import com.hackmonDB.db.entity.userGroup;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.DataInputStream;
@@ -60,6 +62,7 @@ public class SingleService
     private GroupController groupController;
     private EventController eventController;
     private ResourceController resourceController;
+    private userGroupController userGroupController;
 
     public SingleService(Socket socket) throws IOException {
         this.socket = socket;
@@ -73,12 +76,13 @@ public class SingleService
         dataInputStream = new DataInputStream(socket.getInputStream());
         dataOutputStream = new DataOutputStream(socket.getOutputStream());
     }
-     public SingleService(Socket socket,UserController userController, TaskController taskController, GroupController groupController, EventController eventController,ResourceController resourceController) throws IOException {
+     public SingleService(Socket socket,UserController userController, TaskController taskController, GroupController groupController, EventController eventController,ResourceController resourceController,userGroupController userGroupController) throws IOException {
       this.userController = userController;
       this.taskController = taskController;
       this.groupController = groupController;
       this.eventController = eventController;
       this.resourceController = resourceController;
+      this.userGroupController = userGroupController;
          
          this.socket = socket;
         messageOutput = new PrintWriter(
@@ -235,6 +239,32 @@ public class SingleService
         }
         return false;
     }
+    boolean AddUserToGroup(String login, String name)
+    {
+        List<User> users = getAllUsers();
+        User user=null;
+        for (int i = 0; i < users.size(); i++) {
+           if( users.get(i).getLogin().equals(login))
+           {
+                       user= users.get(i);
+           }
+        }
+        if(user== null)
+            return false;
+         List<Group> groups = getAllGroups();
+        Group group=null;
+        for (int i = 0; i < users.size(); i++) {
+           if( groups.get(i).getName().equals(name))
+           {
+                       group= groups.get(i);
+           }
+        }
+        if(group== null)
+            return false;
+        userGroupController.insert(user.getId(), group.getId());
+        return true;
+    }
+ 
     
     User findUser(String login)
     {
@@ -394,6 +424,22 @@ public class SingleService
                      {
                          addUser(username,secondName, login, password,email);
                          messageOutput.println("OK");
+                     }
+                  }
+                   else if(str.toUpperCase().equals("ADDUSERTOGROUP"))
+                 {messageOutput.println("ADDUSERTOGROUP");
+                 
+                     while(!commandInput.ready()) {};
+                     String login= commandInput.readLine();
+                     while(!commandInput.ready()) {};
+                     String name= commandInput.readLine(); 
+                     if(AddUserToGroup(login,name))          
+                     {
+                         messageOutput.println("OK");
+                     }
+                     else
+                     {
+                         messageOutput.println("NOPE");
                      }
                   }
                   else if(str.toUpperCase().equals("LOGIN"))

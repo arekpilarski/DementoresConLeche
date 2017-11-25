@@ -10,6 +10,7 @@ import com.hackmonDB.db.controller.GroupController;
 import com.hackmonDB.db.controller.ResourceController;
 import com.hackmonDB.db.controller.TaskController;
 import com.hackmonDB.db.controller.UserController;
+import com.hackmonDB.db.controller.userGroupController;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -49,6 +50,9 @@ public class ScoobyServer {
     public EventController eventController;
     @Autowired
     public ResourceController resourceController;
+     @Autowired
+    public   userGroupController   userGroupController;
+  
 
     final private int PORT = 8888;
 
@@ -60,13 +64,14 @@ public class ScoobyServer {
         serverSocket = new ServerSocket(PORT);
     }
     
-    ScoobyServer(UserController userController, TaskController taskController, GroupController groupController, EventController eventController,ResourceController resourceController) throws IOException {
+    ScoobyServer(UserController userController, TaskController taskController, GroupController groupController, EventController eventController,ResourceController resourceController,userGroupController userGroupController) throws IOException {
         serverSocket = new ServerSocket(PORT);
       this.userController = userController;
       this.taskController = taskController;
       this.groupController = groupController;
       this.eventController = eventController;
       this.resourceController = resourceController;
+      this.userGroupController = userGroupController;
     }
 
 
@@ -79,13 +84,8 @@ public class ScoobyServer {
 
             while (true) {
                 socket = tcpServer.serverSocket.accept();
-                try {
-                    SingleService singleService = new SingleService(socket,tcpServer.userController,tcpServer.taskController,tcpServer.groupController, tcpServer.eventController,tcpServer.resourceController);
-                    singleService.realize();
-                } catch (IOException e) {
-                    socket.close();
-                    System.err.println(e.getMessage());
-                }
+                SingleService singleService = new SingleService(socket,tcpServer.userController,tcpServer.taskController,tcpServer.groupController, tcpServer.eventController,tcpServer.resourceController,tcpServer.userGroupController);
+                singleService.realize();
             }
         } catch (IOException e) {
             System.err.println(e.getMessage());
