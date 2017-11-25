@@ -8,5 +8,6 @@ public class HackmonDbApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(HackmonDbApplication.class, args);
+               
 	}
 }

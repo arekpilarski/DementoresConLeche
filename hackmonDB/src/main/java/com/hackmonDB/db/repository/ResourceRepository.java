@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hackmonDB.db.entity;
+package com.hackmonDB.db.repository;
 
-import java.io.Serializable;
+import com.hackmonDB.db.entity.Event;
+import com.hackmonDB.db.entity.Resource;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author MM27P
  */
-public interface UserRepository extends  JpaRepository<User, Long>{
+public interface ResourceRepository extends  JpaRepository<Resource, Long>{
     
 }

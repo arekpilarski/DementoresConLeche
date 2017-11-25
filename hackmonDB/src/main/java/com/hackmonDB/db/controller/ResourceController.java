@@ -5,8 +5,10 @@
  */
 package com.hackmonDB.db.controller;
 
-import com.hackmonDB.db.entity.User;
-import com.hackmonDB.db.repository.UserRepository;
+import com.hackmonDB.db.entity.Event;
+import com.hackmonDB.db.entity.Resource;
+import com.hackmonDB.db.repository.EventRepository;
+import com.hackmonDB.db.repository.ResourceRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,28 +19,22 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author MM27P
  */
+
 @RestController
-@RequestMapping("/User")
-public class UserController {
-    private final UserRepository userRepository;
+@RequestMapping("/Resource")
+public class ResourceController {
     
-    @Autowired
-    public UserController (UserRepository userRepository){
+    private final ResourceRepository resourceRepository;
     
-        this.userRepository = userRepository;
+     @Autowired
+    public ResourceController (ResourceRepository resourceRepository){
+    
+        this.resourceRepository = resourceRepository;
     }
     @GetMapping
-    public List<User> listUsers()
+    public List<Resource> listTasks()
     {
-        return userRepository.findAll();
+        return resourceRepository.findAll();
     }
     
-    @GetMapping("/insert")
-    public String insert(){
-      for(int i=0;i<10;++i)
-      {
-          userRepository.save(new User("Name"));
-      }
-      return "inserted";
-    }
 }

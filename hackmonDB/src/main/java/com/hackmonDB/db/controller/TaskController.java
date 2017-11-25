@@ -5,8 +5,9 @@
  */
 package com.hackmonDB.db.controller;
 
-import com.hackmonDB.db.entity.User;
-import com.hackmonDB.db.repository.UserRepository;
+import com.hackmonDB.db.entity.Task;
+import com.hackmonDB.db.repository.TaskRepository;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,27 +18,28 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author MM27P
  */
+
 @RestController
-@RequestMapping("/User")
-public class UserController {
-    private final UserRepository userRepository;
+@RequestMapping("/Task")
+public class TaskController {
+    private final TaskRepository taskRepository;
     
-    @Autowired
-    public UserController (UserRepository userRepository){
+     @Autowired
+    public TaskController (TaskRepository taskRepository){
     
-        this.userRepository = userRepository;
+        this.taskRepository = taskRepository;
     }
     @GetMapping
-    public List<User> listUsers()
+    public List<Task> listTasks()
     {
-        return userRepository.findAll();
+        return taskRepository.findAll();
     }
     
     @GetMapping("/insert")
     public String insert(){
       for(int i=0;i<10;++i)
       {
-          userRepository.save(new User("Name"));
+          taskRepository.save(new Task("Name",new Date()));
       }
       return "inserted";
     }
