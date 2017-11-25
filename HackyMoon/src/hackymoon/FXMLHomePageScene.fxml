@@ -29,7 +29,7 @@
             <Font size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutY="259.0" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #9d9d9d;" text="Notes">
+      <JFXButton layoutY="259.0" onAction="#pressNotesButton" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #9d9d9d;" text="Notes">
          <font>
             <Font size="18.0" />
          </font>
@@ -49,12 +49,12 @@
             <Font size="51.0" />
          </font>
       </Label>
-      <ImageView fitHeight="142.0" fitWidth="150.0" layoutX="605.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="avatar" fitHeight="150.0" fitWidth="150.0" layoutX="605.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/DefaultAvatar.png" />
          </image>
       </ImageView>
-      <JFXButton layoutX="613.0" layoutY="199.0" prefHeight="26.0" prefWidth="134.0" style="-fx-background-color: #919191;" text="Change avatar" />
+      <JFXButton layoutX="613.0" layoutY="199.0" onAction="#fileChooserButton" prefHeight="26.0" prefWidth="134.0" style="-fx-background-color: #919191;" text="Change avatar" />
       <Label layoutX="180.0" layoutY="110.0" prefHeight="26.0" prefWidth="40.0" text="Name" />
       <Label layoutX="180.0" layoutY="160.0" text="Surname" />
       <Label layoutX="180.0" layoutY="210.0" prefHeight="18.0" prefWidth="73.0" text="Username" />

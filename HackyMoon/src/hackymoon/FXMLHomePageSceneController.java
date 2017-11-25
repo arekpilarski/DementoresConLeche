@@ -6,7 +6,11 @@
 package hackymoon;
 
 import com.jfoenix.controls.JFXButton;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -16,6 +20,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -95,6 +104,29 @@ public class FXMLHomePageSceneController implements Initializable {
         appStage.show();
     }
     
+    @FXML
+    private ImageView avatar;
+    
+    @FXML
+    private void fileChooserButton(ActionEvent event) throws MalformedURLException, FileNotFoundException {
+        FileChooser fc = new FileChooser();
+        File selectedFile = fc.showOpenDialog(null);
+        
+        if(selectedFile!=null){
+            
+            String path = selectedFile.getAbsolutePath();
+            FileInputStream file = new FileInputStream(path);
+
+            Image avatarContent = new Image(file);
+            avatar.setImage(avatarContent);
+            
+            
+          
+        } else {
+            System.out.println("file is");
+        }
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -102,4 +134,4 @@ public class FXMLHomePageSceneController implements Initializable {
     
     
     
-}
+    }

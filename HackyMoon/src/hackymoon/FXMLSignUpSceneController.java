@@ -25,6 +25,8 @@ import javafx.stage.Stage;
  */
 public class FXMLSignUpSceneController implements Initializable {
 
+    
+    
     /**
      * Initializes the controller class.
      */
