@@ -31,10 +31,10 @@ public class Resource {
     @Column(name="format")
     private String format;
      @Column(name="data")
-    private String data;
+    private byte[]  data;
     
     public Resource (){}
-    public Resource (String name, String format, String data)
+    public Resource (String name, String format,byte[]  data)
     {
         this.name = name;
         this.data = data;
@@ -86,14 +86,14 @@ public class Resource {
     /**
      * @return the data
      */
-    public String getData() {
+    public byte[] getData() {
         return data;
     }
 
     /**
      * @param data the data to set
      */
-    public void setData(String data) {
+    public void setData(byte[] data) {
         this.data = data;
     }
 }

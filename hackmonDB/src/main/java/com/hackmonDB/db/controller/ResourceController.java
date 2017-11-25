@@ -12,6 +12,7 @@ import com.hackmonDB.db.repository.ResourceRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author MM27P
  */
 
-@Controller
+@Service
 @RequestMapping("/Resource")
 public class ResourceController {
    
@@ -32,6 +33,12 @@ public class ResourceController {
     public List<Resource> listTasks()
     {
         return resourceRepository.findAll();
+    }
+    
+    @GetMapping
+    public void Insert(String name, String extension, byte[] data)
+    {
+        resourceRepository.save(new Resource(name, extension,data));
     }
     
 }
