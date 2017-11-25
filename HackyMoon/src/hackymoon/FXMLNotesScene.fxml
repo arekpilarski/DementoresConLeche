@@ -46,7 +46,7 @@
             <Font size="18.0" />
          </font>
       </JFXButton>
-      <Label layoutX="172.0" layoutY="14.0" prefHeight="78.0" prefWidth="563.0" text="Hacky Moon" textAlignment="CENTER">
+      <Label layoutX="167.0" layoutY="8.0" prefHeight="78.0" prefWidth="563.0" text="Hacky Moon" textAlignment="CENTER">
          <font>
             <Font size="51.0" />
          </font>
@@ -54,15 +54,9 @@
       <JFXButton layoutX="467.0" layoutY="149.0" onAction="#fileChooserButton" prefHeight="0.0" prefWidth="104.0" style="-fx-background-color: #959595;" text="Choose file" />
       <TextField fx:id="filePath" layoutX="467.0" layoutY="189.0" prefHeight="26.0" prefWidth="310.0" promptText="Path" />
       <ImageView fitHeight="336.0" fitWidth="310.0" layoutX="172.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true" />
-      <ListView fx:id="listOfObjects" editable="true" layoutX="172.0" layoutY="101.0" prefHeight="274.0" prefWidth="286.0" />
-      <TextField layoutX="172.0" layoutY="413.0" prefHeight="26.0" prefWidth="286.0" />
-      <Label layoutX="172.0" layoutY="385.0" text="File name">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <JFXButton layoutX="380.0" layoutY="451.0" style="-fx-background-color: #959595;" text="Show notes" />
-      <JFXButton layoutX="468.0" layoutY="231.0" prefHeight="26.0" prefWidth="64.0" style="-fx-background-color: #959595;" text="Add" />
+      <ListView fx:id="listOfObjects" editable="true" layoutX="172.0" layoutY="101.0" prefHeight="336.0" prefWidth="283.0" />
+      <JFXButton layoutX="381.0" layoutY="445.0" onAction="#fileViewerButton" style="-fx-background-color: #959595;" text="Show note" />
+      <JFXButton layoutX="468.0" layoutY="231.0" onAction="#fileAdderButton" prefHeight="26.0" prefWidth="64.0" style="-fx-background-color: #959595;" text="Add" />
       <Label layoutX="468.0" layoutY="102.0" text="Add note">
          <font>
             <Font size="18.0" />
@@ -75,6 +69,8 @@
       </Label>
       <TextField layoutX="467.0" layoutY="322.0" prefHeight="26.0" prefWidth="310.0" promptText="File name" />
       <JFXButton layoutX="467.0" layoutY="360.0" prefHeight="26.0" prefWidth="64.0" style="-fx-background-color: #959595;" text="Add" />
-      <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="590.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="background" layoutX="167.0" layoutY="27.0" prefHeight="469.0" prefWidth="618.0" style="-fx-background-color: #c1c1c1;" visible="false" />
+      <ImageView fx:id="imageShow" fitHeight="411.0" fitWidth="618.0" layoutX="172.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+      <JFXButton fx:id="closeButton" layoutX="680.0" layoutY="35.0" onAction="#fileCloserButton" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #959595;" text="Close" visible="false" />
    </children>
 </AnchorPane>

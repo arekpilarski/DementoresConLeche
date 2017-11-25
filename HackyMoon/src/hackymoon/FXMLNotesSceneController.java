@@ -5,11 +5,15 @@
  */
 package hackymoon;
 
+import com.jfoenix.controls.JFXButton;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -33,9 +37,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -120,7 +126,14 @@ public class FXMLNotesSceneController implements Initializable {
     private TextField filePath;
 
     @FXML
-    private ImageView imageView;
+    private ImageView imageShow;
+    
+    @FXML
+    private JFXButton closeButton;
+    
+    @FXML
+    private Label background;
+    
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
@@ -197,7 +210,7 @@ public class FXMLNotesSceneController implements Initializable {
     }
     
     @FXML
-    private void fileViewerButton(ActionEvent event)
+    private void fileViewerButton(ActionEvent event) throws FileNotFoundException
     {
         String fileName = listOfObjects.getSelectionModel().getSelectedItem();
         byte[] data;
@@ -250,9 +263,9 @@ public class FXMLNotesSceneController implements Initializable {
                     data = new byte[len];
                     dataInputStream.readFully(data);
 
-                    //FileOutputStream fileToStore = new FileOutputStream(System.getProperty("user.dir") + "/received_" + fileName);
-                    //fileToStore.write(data);
-                    //fileToStore.close();
+                    FileOutputStream fileToStore = new FileOutputStream(System.getProperty("user.dir") + "/received_" + fileName);
+                    fileToStore.write(data);
+                    fileToStore.close();
                     System.out.println("Got file!");
                 } else {
 
@@ -265,13 +278,30 @@ public class FXMLNotesSceneController implements Initializable {
         {
             
         }
+        String path = System.getProperty("user.dir") + "/received_" + fileName;
         
+        FileInputStream file = new FileInputStream(path);
+
+        Image content = new Image(file);
+        imageShow.setImage(content);
+        
+        closeButton.setVisible(true);
+        imageShow.setVisible(true);
+        background.setVisible(true);
         
     }
     
     @FXML
-    private void fileChooserButton(ActionEvent event) throws RuntimeException, IOException {
-        
+    private void fileCloserButton(ActionEvent event)
+    {
+        closeButton.setVisible(false);
+        imageShow.setVisible(false);
+        background.setVisible(false);
+    }
+    
+    @FXML
+    private void fileAdderButton(ActionEvent event) throws IOException
+    {
         Socket socket = new Socket("10.5.0.37", 8888);
         BufferedReader commandReader = new BufferedReader(new InputStreamReader(System.in));
         BufferedReader messageInput = new BufferedReader(
@@ -283,15 +313,9 @@ public class FXMLNotesSceneController implements Initializable {
                                 socket.getOutputStream())), true);
         DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
         DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
-
-        
-        
-        
-        FileChooser fc=new FileChooser();
-        File selectedFile = fc.showOpenDialog(null);
-        
-        if(selectedFile!=null){
-            String path = selectedFile.getAbsolutePath();
+        String path;
+        if((path = filePath.getText()) != null){
+            File selectedFile = new File(path);
             commandOutput.println("SEND");
           while(!messageInput.ready()) {};
             String serverMessage = messageInput.readLine();
@@ -323,7 +347,72 @@ public class FXMLNotesSceneController implements Initializable {
         } else {
             System.out.println("file is");
         }
-         
+          commandOutput.println("GET");
+            while (!messageInput.ready()) {
+            };
+            String serverMessage = messageInput.readLine();
+            if (serverMessage.toUpperCase().equals("GET")) {
+                while (!messageInput.ready()) {
+                };
+                serverMessage = messageInput.readLine();
+                List<String> list = new ArrayList();
+                if (serverMessage.toUpperCase().equals("LIST")) {
+                    while (true) {
+                        while (!messageInput.ready()) {
+                        };
+                        serverMessage = messageInput.readLine();
+                        if (!serverMessage.toUpperCase().equals("ENDLIST")) {
+                            System.out.println(serverMessage);
+
+                            list.add(serverMessage);
+                        } else {
+                            break;
+                        }
+                    }
+
+                    ObservableList<String> names = FXCollections.observableArrayList(list);  
+                    listOfObjects.setItems(names);
+                }
+
+                while (!messageInput.ready()) {
+                };
+                serverMessage = messageInput.readLine();
+                System.out.println(serverMessage);
+                commandOutput.println("lol");
+                while (!messageInput.ready()) {
+                };
+                serverMessage = messageInput.readLine();
+                if (serverMessage.toUpperCase().equals("EXISTS")) {
+                    int len = dataInputStream.readInt();
+                    byte[] data = new byte[len];
+                    dataInputStream.readFully(data);
+
+                    //FileOutputStream fileToStore = new FileOutputStream(System.getProperty("user.dir") + "/received_" + fileName);
+                    //fileToStore.write(data);
+                    //fileToStore.close();
+                    System.out.println("Got file!");
+                } else {
+
+                    System.out.println("File not found on server!");
+                }
+                
+            }
+            commandOutput.println("QUIT");
+    }
+            
+    @FXML
+    private void fileChooserButton(ActionEvent event) throws RuntimeException, IOException {
+        
+        
+        
+        
+        
+        FileChooser fc=new FileChooser();
+        File selectedFile = fc.showOpenDialog(null);
+        
+        filePath.setText(selectedFile.getAbsolutePath());
+        
+        
     }
 
     /**
