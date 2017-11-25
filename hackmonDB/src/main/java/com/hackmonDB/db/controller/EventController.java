@@ -30,10 +30,7 @@ public class EventController {
     @Autowired
     private  EventRepository eventRepository;
     
-    // @Autowired
-   // public EventController (EventRepository eventRepository){
-     //   this.eventRepository = eventRepository;
-   // }
+    
     @GetMapping
     public List<Event> listEvents()
     {
@@ -44,5 +41,11 @@ public class EventController {
     {
         eventRepository.save(new Event(name, date, description));
     }
-  
+    
+    @GetMapping
+    public void Delete(long id)
+    {
+        eventRepository.delete(id);
+    }
+   
 }

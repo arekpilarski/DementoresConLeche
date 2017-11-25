@@ -181,9 +181,10 @@ public class SingleService
     {
          return resourceController.listResource();
     }
-    void  addUser(String name, String secondName, String login)  
+   
+      void  addUser(String name, String secondName, String login, String password, String email)  
     {
-        userController.insert(login, name, secondName);
+        userController.insert(login, name, secondName, password, email);
     }
      void  addGroup(String name)  
     {
@@ -196,6 +197,16 @@ public class SingleService
     void addTask(String name, Date date)
     {
         taskController.insert(name, date);
+    }
+    
+    boolean checkUserExist(String login)
+    {
+        List<User> list =userController.listUsers();;
+        for (int i = 0; i < list.size(); i++) {
+            if(list.get(i).getLogin().equals(login))
+                return true;
+        }
+        return false;
     }
       
     public void realize() {
@@ -269,18 +280,7 @@ public class SingleService
                     messageOutput.println("ENDGETRESOURCES");
                 }
                 
-                   else if(str.toUpperCase().equals("ADDUSER"))
-                {
-                     messageOutput.println("ADDUSER");                   
-                    while(!commandInput.ready()) {};
-                     String username= commandInput.readLine();
-                     while(!commandInput.ready()) {};
-                     String secondName= commandInput.readLine();
-                      while(!commandInput.ready()) {};
-                     String login= commandInput.readLine();                  
-                     addUser(username, secondName, login);  
-                     messageOutput.println("OK");
-                }
+         
                    else if(str.toUpperCase().equals("ADDEVENT"))
                 {
                      messageOutput.println("ADDEVENT");                   
@@ -314,6 +314,29 @@ public class SingleService
                      addGroup(eventName);
                       messageOutput.println("OK"); 
                 }
+                 else if(str.toUpperCase().equals("REGISTER"))
+                 {messageOutput.println("REGISTER");
+                 
+                     while(!commandInput.ready()) {};
+                     String login= commandInput.readLine();
+                     while(!commandInput.ready()) {};
+                     String username= commandInput.readLine();
+                     while(!commandInput.ready()) {};
+                     String secondName= commandInput.readLine();  
+                     while(!commandInput.ready()) {};
+                     String password= commandInput.readLine(); 
+                     while(!commandInput.ready()) {};
+                     String email= commandInput.readLine();
+                     if(checkUserExist(login))          
+                     {
+                         messageOutput.println("USEREXIST");
+                     }
+                     else
+                     {
+                         addUser(username,secondName, login, password,email);
+                         messageOutput.println("OK");
+                     }
+                  }
                 System.out.println("Command: " + str);
             }
             System.out.println("closing...");

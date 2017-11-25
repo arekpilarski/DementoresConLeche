@@ -39,4 +39,9 @@ public class GroupController {
     {
         groupRepository.save(new Group(name));
     }
+    
+    public void Delete(long id)
+    {
+        groupRepository.delete(id);
+    }
 }

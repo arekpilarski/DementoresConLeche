@@ -24,12 +24,19 @@ public class User  implements Serializable{
     public User(){
     }
 
-    public User( String name, String secondName, String Login) {
+    public User( String name, String secondName, String Login,String password) {
         this.name = name;
         this.secondName = secondName;
         this.Login = Login;
+        this.passw0rd = password;
     }
-    
+    public User( String name, String secondName, String Login,String password, String email) {
+        this.name = name;
+        this.secondName = secondName;
+        this.Login = Login;
+        this.passw0rd = password;
+         this.email = email;
+    }
     
         
     @Id
@@ -41,6 +48,10 @@ public class User  implements Serializable{
     private String secondName;
     @Column(name = "login")
     private String Login;
+     @Column(name = "password")
+    private String passw0rd;
+     @Column(name = "email")
+    private String email;
     
     /**
      * @return the id
@@ -101,6 +112,34 @@ public class User  implements Serializable{
     public User( String login)
     {
        this.Login = login;
+    }
+
+    /**
+     * @return the passw0rd
+     */
+    public String getPassw0rd() {
+        return passw0rd;
+    }
+
+    /**
+     * @param passw0rd the passw0rd to set
+     */
+    public void setPassw0rd(String passw0rd) {
+        this.passw0rd = passw0rd;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     

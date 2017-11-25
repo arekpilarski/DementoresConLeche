@@ -38,4 +38,11 @@ public class TaskController {
           taskRepository.save(new Task(name, date));
       return "inserted";
     }
+    
+    @GetMapping
+    public void Delete(long id)
+    {
+        taskRepository.delete(id);
+    }
+    
 }

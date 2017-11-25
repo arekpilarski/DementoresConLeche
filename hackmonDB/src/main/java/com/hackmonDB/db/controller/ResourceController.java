@@ -40,5 +40,10 @@ public class ResourceController {
     {
         resourceRepository.save(new Resource(name, extension,data));
     }
+     @GetMapping
+    public void Delete (long id)
+    {
+        resourceRepository.delete(id);
+    }
     
 }

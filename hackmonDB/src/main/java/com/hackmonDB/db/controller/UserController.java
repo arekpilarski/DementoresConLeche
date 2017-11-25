@@ -31,9 +31,18 @@ public class UserController {
         return userRepository.findAll();
     }
     
-    @GetMapping("/insert")
-    public String insert(String login, String userName, String SecondName){
-          userRepository.save(new User(userName,SecondName,login));
+ 
+    
+    @GetMapping
+    public String insert(String login, String userName, String SecondName,String password,String email){
+          userRepository.save(new User(userName,SecondName,login, password,email));
       return "inserted";
     }
+    
+    @GetMapping
+    public void Delete(long id)
+    {
+        userRepository.delete(id);
+    }
+    
 }
