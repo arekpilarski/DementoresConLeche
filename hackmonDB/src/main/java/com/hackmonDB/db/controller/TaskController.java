@@ -33,11 +33,9 @@ public class TaskController {
     }
     
     @GetMapping("/insert")
-    public String insert(){
-      for(int i=0;i<10;++i)
-      {
-          taskRepository.save(new Task("Name",new Date()));
-      }
+    public String insert(String name, Date date){
+
+          taskRepository.save(new Task(name, date));
       return "inserted";
     }
 }

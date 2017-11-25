@@ -6,6 +6,7 @@
 package com.hackmonDB.db.controller;
 
 import com.hackmonDB.db.entity.Event;
+import com.hackmonDB.db.entity.Group;
 import com.hackmonDB.db.entity.Task;
 import com.hackmonDB.db.repository.EventRepository;
 import com.hackmonDB.db.repository.TaskRepository;
@@ -34,10 +35,14 @@ public class EventController {
      //   this.eventRepository = eventRepository;
    // }
     @GetMapping
-    public List<Event> listTasks()
+    public List<Event> listEvents()
     {
         return eventRepository.findAll();
     }
-    
+    @GetMapping
+    public void Insert(String name, Date date, String description)
+    {
+        eventRepository.save(new Event(name, date, description));
+    }
   
 }

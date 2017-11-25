@@ -31,11 +31,15 @@ public class Event {
     @Column(name="date")
     private Date date;
     
+     @Column(name="description")
+    private String description;
+     
     public Event(){}
-    public Event(String name, Date date)
+    public Event(String name, Date date, String description)
     {
         this.name = name;
         this.date = date;
+        this.description = description;
     }
     
       /**
@@ -78,5 +82,19 @@ public class Event {
      */
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

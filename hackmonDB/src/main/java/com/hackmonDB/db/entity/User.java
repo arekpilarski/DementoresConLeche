@@ -24,8 +24,7 @@ public class User  implements Serializable{
     public User(){
     }
 
-    public User(long id, String name, String secondName, String Login) {
-        this.id = id;
+    public User( String name, String secondName, String Login) {
         this.name = name;
         this.secondName = secondName;
         this.Login = Login;

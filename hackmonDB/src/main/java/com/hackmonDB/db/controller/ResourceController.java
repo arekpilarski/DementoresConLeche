@@ -30,7 +30,7 @@ public class ResourceController {
     private ResourceRepository resourceRepository;
     
     @GetMapping
-    public List<Resource> listTasks()
+    public List<Resource> listResource()
     {
         return resourceRepository.findAll();
     }

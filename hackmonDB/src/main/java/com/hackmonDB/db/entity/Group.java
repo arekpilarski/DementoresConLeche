@@ -29,8 +29,8 @@ public class Group {
     @Column(name="name")
     private String name;
     
-    Group(){}
-    Group(String name)
+   public  Group(){}
+   public Group(String name)
     {
         this.name = name;
     }

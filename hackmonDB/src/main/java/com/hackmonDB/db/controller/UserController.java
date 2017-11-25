@@ -32,11 +32,8 @@ public class UserController {
     }
     
     @GetMapping("/insert")
-    public String insert(User user){
-      for(int i=0;i<10;++i)
-      {
-          userRepository.save(user);
-      }
+    public String insert(String login, String userName, String SecondName){
+          userRepository.save(new User(userName,SecondName,login));
       return "inserted";
     }
 }

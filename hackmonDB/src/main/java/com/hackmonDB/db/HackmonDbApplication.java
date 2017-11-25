@@ -66,8 +66,4 @@ public class HackmonDbApplication implements CommandLineRunner{
         exit(0); 
     } 
      
-    public void AddUser(User user) 
-    { 
-        userController.insert(user); 
-    } 
 } 

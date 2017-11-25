@@ -7,6 +7,7 @@ package com.hackmonDB.db.controller;
 
 import com.hackmonDB.db.entity.Event;
 import com.hackmonDB.db.entity.Group;
+import com.hackmonDB.db.entity.Resource;
 import com.hackmonDB.db.repository.EventRepository;
 import com.hackmonDB.db.repository.GroupRepository;
 import java.util.List;
@@ -28,8 +29,14 @@ public class GroupController {
     private  GroupRepository groupRepository;
     
     @GetMapping
-    public List<Group> listTasks()
+    public List<Group> listGroups()
     {
         return groupRepository.findAll();
+    }
+    
+     @GetMapping
+    public void Insert(String name)
+    {
+        groupRepository.save(new Group(name));
     }
 }
