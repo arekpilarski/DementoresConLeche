@@ -23,14 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/Group")
 public class GroupController {
+    @Autowired
+    private  GroupRepository groupRepository;
     
-    private final GroupRepository groupRepository;
-    
-     @Autowired
-    public GroupController (GroupRepository groupRepository){
-    
-        this.groupRepository = groupRepository;
-    }
     @GetMapping
     public List<Group> listTasks()
     {

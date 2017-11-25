@@ -22,13 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/Task")
 public class TaskController {
-    private final TaskRepository taskRepository;
+    @Autowired
+    private  TaskRepository taskRepository;
     
-     @Autowired
-    public TaskController (TaskRepository taskRepository){
-    
-        this.taskRepository = taskRepository;
-    }
     @GetMapping
     public List<Task> listTasks()
     {

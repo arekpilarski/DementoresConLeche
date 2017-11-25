@@ -11,6 +11,7 @@ import com.hackmonDB.db.repository.EventRepository;
 import com.hackmonDB.db.repository.ResourceRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,17 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
  * @author MM27P
  */
 
-@RestController
+@Controller
 @RequestMapping("/Resource")
 public class ResourceController {
+   
+    @Autowired
+    private ResourceRepository resourceRepository;
     
-    private final ResourceRepository resourceRepository;
-    
-     @Autowired
-    public ResourceController (ResourceRepository resourceRepository){
-    
-        this.resourceRepository = resourceRepository;
-    }
     @GetMapping
     public List<Resource> listTasks()
     {
