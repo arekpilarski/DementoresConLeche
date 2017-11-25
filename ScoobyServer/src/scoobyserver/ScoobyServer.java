@@ -140,6 +140,25 @@ class SingleService
         }
     }
     
+    private void deleteFileFromServer() throws IOException
+    {
+        messageOutput.println("DELETE");
+        
+        while(!commandInput.ready()) {}
+        String fileName = commandInput.readLine();
+
+        File dir = new File(System.getProperty("user.dir") + "/" + fileName);
+        if(dir.exists())
+        {
+            dir.delete();
+            messageOutput.println("OK");
+        }
+        else
+        {
+            messageOutput.println("NOPE");
+        }
+    }
+    
     private void sendFileToClient() throws IOException
     {
         messageOutput.println("GET");
@@ -186,6 +205,7 @@ class SingleService
             while (true) {
                 
                 String str = commandInput.readLine();
+                System.out.println(str);
                 if (str.toUpperCase().equals("QUIT")) 
                 {
                     break;
@@ -197,6 +217,10 @@ class SingleService
                 else if(str.toUpperCase().equals("GET"))
                 {
                     sendFileToClient();
+                }
+                else if(str.toUpperCase().equals("DELETE"))
+                {
+                    deleteFileFromServer();
                 }
                 System.out.println("Command: " + str);
             }

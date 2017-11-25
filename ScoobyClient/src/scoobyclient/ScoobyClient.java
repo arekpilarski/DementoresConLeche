@@ -71,6 +71,17 @@ public class ScoobyClient
         }
     }
     
+    public void deleteFileFromServer() throws IOException
+    {
+        String fileName = commandReader.readLine();
+        commandOutput.println(fileName);
+        
+        while(!messageInput.ready()) {};
+        String serverMessage = messageInput.readLine();
+        System.out.println(serverMessage);
+        
+    }
+    
     public void acquireFileFromServer() throws IOException
     {
         while(!messageInput.ready()) {};
@@ -138,7 +149,11 @@ public class ScoobyClient
             }
             else if(clientString.toUpperCase().equals("GET"))
             {
-                
+                client.acquireFileFromServer();
+            }
+            else if(clientString.toUpperCase().equals("DELETE"))
+            {
+                client.deleteFileFromServer();
             }
         }
         client.socket.close();
