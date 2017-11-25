@@ -21,7 +21,6 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.URL;
 import java.nio.file.Files;
-import static java.nio.file.Files.list;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -36,13 +35,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -134,6 +132,11 @@ public class FXMLNotesSceneController implements Initializable {
     @FXML
     private Label background;
     
+    @FXML
+    private TextField fileToDelete;
+    
+    
+    
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
@@ -206,8 +209,19 @@ public class FXMLNotesSceneController implements Initializable {
         {
             
         }
+        
 
     }
+    
+    @FXML
+    private void setDeleteItem(MouseEvent event)
+    {
+        fileToDelete.setText(listOfObjects.getSelectionModel().getSelectedItem());
+        System.out.println(listOfObjects.getSelectionModel().getSelectedItem());
+           
+    }
+    
+    
     
     @FXML
     private void fileViewerButton(ActionEvent event) throws FileNotFoundException
@@ -399,13 +413,10 @@ public class FXMLNotesSceneController implements Initializable {
             }
             commandOutput.println("QUIT");
     }
-            
+    
+    
     @FXML
     private void fileChooserButton(ActionEvent event) throws RuntimeException, IOException {
-        
-        
-        
-        
         
         FileChooser fc=new FileChooser();
         File selectedFile = fc.showOpenDialog(null);
