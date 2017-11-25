@@ -68,7 +68,7 @@
          </font>
       </Label>
       <TextField fx:id="fileToDelete" layoutX="467.0" layoutY="322.0" prefHeight="26.0" prefWidth="310.0" promptText="File name" />
-      <JFXButton layoutX="467.0" layoutY="360.0" prefHeight="26.0" prefWidth="64.0" style="-fx-background-color: #959595;" text="Delete" />
+      <JFXButton layoutX="467.0" layoutY="360.0" onAction="#fileDeleteButton" prefHeight="26.0" prefWidth="64.0" style="-fx-background-color: #959595;" text="Delete" />
       <Label fx:id="background" layoutX="167.0" layoutY="27.0" prefHeight="469.0" prefWidth="618.0" style="-fx-background-color: #c1c1c1;" visible="false" />
       <ImageView fx:id="imageShow" fitHeight="411.0" fitWidth="618.0" layoutX="172.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true" visible="false" />
       <JFXButton fx:id="closeButton" layoutX="680.0" layoutY="35.0" onAction="#fileCloserButton" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #959595;" text="Close" visible="false" />
