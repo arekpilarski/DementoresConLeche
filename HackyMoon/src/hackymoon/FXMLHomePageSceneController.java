@@ -155,7 +155,7 @@ public class FXMLHomePageSceneController implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        try {
+      /*  try {
             Socket socket = new Socket("10.5.0.45", 8888);
             BufferedReader commandReader = new BufferedReader(new InputStreamReader(System.in));
             BufferedReader messageInput = new BufferedReader(
@@ -210,5 +210,6 @@ public class FXMLHomePageSceneController implements Initializable {
         } catch (Exception e) {
 
         }
+    }*/
     }
     } 
