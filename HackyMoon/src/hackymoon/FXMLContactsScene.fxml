@@ -50,6 +50,6 @@
             <Font size="51.0" />
          </font>
       </Label>
-      <ListView layoutX="176.0" layoutY="112.0" prefHeight="360.0" prefWidth="563.0" />
+      <ListView fx:id="contactsList" editable="true" layoutX="176.0" layoutY="112.0" prefHeight="360.0" prefWidth="563.0" />
    </children>
 </AnchorPane>

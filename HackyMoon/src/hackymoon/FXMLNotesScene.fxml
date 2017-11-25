@@ -52,7 +52,7 @@
          </font>
       </Label>
       <JFXButton layoutX="467.0" layoutY="149.0" onAction="#fileChooserButton" prefHeight="0.0" prefWidth="104.0" style="-fx-background-color: #959595;" text="Choose file" />
-      <TextField fx:id="filePath" layoutX="467.0" layoutY="189.0" prefHeight="26.0" prefWidth="310.0" promptText="Path" />
+      <TextField fx:id="filePath" editable="false" layoutX="467.0" layoutY="189.0" prefHeight="26.0" prefWidth="310.0" promptText="Path" />
       <ImageView fitHeight="336.0" fitWidth="310.0" layoutX="172.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true" />
       <ListView fx:id="listOfObjects" editable="true" layoutX="172.0" layoutY="101.0" onMouseClicked="#setDeleteItem" prefHeight="336.0" prefWidth="283.0" />
       <JFXButton layoutX="381.0" layoutY="445.0" onAction="#fileViewerButton" style="-fx-background-color: #959595;" text="Show note" />
@@ -67,7 +67,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="fileToDelete" layoutX="467.0" layoutY="322.0" prefHeight="26.0" prefWidth="310.0" promptText="File name" />
+      <TextField fx:id="fileToDelete" editable="false" layoutX="467.0" layoutY="322.0" prefHeight="26.0" prefWidth="310.0" promptText="File name" />
       <JFXButton layoutX="467.0" layoutY="360.0" onAction="#fileDeleteButton" prefHeight="26.0" prefWidth="64.0" style="-fx-background-color: #959595;" text="Delete" />
       <Label fx:id="background" layoutX="167.0" layoutY="27.0" prefHeight="469.0" prefWidth="618.0" style="-fx-background-color: #c1c1c1;" visible="false" />
       <ImageView fx:id="imageShow" fitHeight="411.0" fitWidth="618.0" layoutX="172.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true" visible="false" />

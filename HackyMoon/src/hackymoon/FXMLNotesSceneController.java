@@ -138,7 +138,7 @@ public class FXMLNotesSceneController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            Socket socket = new Socket("10.5.0.37", 8888);
+            Socket socket = new Socket("10.5.0.45", 8888);
             BufferedReader commandReader = new BufferedReader(new InputStreamReader(System.in));
             BufferedReader messageInput = new BufferedReader(
                     new InputStreamReader(
@@ -166,7 +166,6 @@ public class FXMLNotesSceneController implements Initializable {
                         serverMessage = messageInput.readLine();
                         if (!serverMessage.toUpperCase().equals("ENDLIST")) {
                             System.out.println(serverMessage);
-
                             list.add(serverMessage);
                         } else {
                             break;
@@ -190,9 +189,6 @@ public class FXMLNotesSceneController implements Initializable {
                     byte[] data = new byte[len];
                     dataInputStream.readFully(data);
 
-                    //FileOutputStream fileToStore = new FileOutputStream(System.getProperty("user.dir") + "/received_" + fileName);
-                    //fileToStore.write(data);
-                    //fileToStore.close();
                     System.out.println("Got file!");
                 } else {
 
@@ -218,7 +214,7 @@ public class FXMLNotesSceneController implements Initializable {
         String fileName = listOfObjects.getSelectionModel().getSelectedItem();
         byte[] data;
         try {
-            Socket socket = new Socket("10.5.0.37", 8888);
+            Socket socket = new Socket("10.5.0.45", 8888);
             BufferedReader commandReader = new BufferedReader(new InputStreamReader(System.in));
             BufferedReader messageInput = new BufferedReader(
                     new InputStreamReader(
@@ -302,7 +298,7 @@ public class FXMLNotesSceneController implements Initializable {
     private void fileDeleteButton(ActionEvent event) throws IOException {
 
         if (!fileToDelete.getText().isEmpty()) {
-            Socket socket = new Socket("10.5.0.37", 8888);
+            Socket socket = new Socket("10.5.0.45", 8888);
             BufferedReader commandReader = new BufferedReader(new InputStreamReader(System.in));
             BufferedReader messageInput = new BufferedReader(
                     new InputStreamReader(
@@ -333,7 +329,7 @@ public class FXMLNotesSceneController implements Initializable {
             commandOutput.println("QUIT");
         }
         try {
-            Socket socket = new Socket("10.5.0.37", 8888);
+            Socket socket = new Socket("10.5.0.45", 8888);
             BufferedReader commandReader = new BufferedReader(new InputStreamReader(System.in));
             BufferedReader messageInput = new BufferedReader(
                     new InputStreamReader(
@@ -403,7 +399,7 @@ public class FXMLNotesSceneController implements Initializable {
 
     @FXML
     private void fileAdderButton(ActionEvent event) throws IOException {
-        Socket socket = new Socket("10.5.0.37", 8888);
+        Socket socket = new Socket("10.5.0.45", 8888);
         BufferedReader commandReader = new BufferedReader(new InputStreamReader(System.in));
         BufferedReader messageInput = new BufferedReader(
                 new InputStreamReader(
@@ -486,9 +482,6 @@ public class FXMLNotesSceneController implements Initializable {
                 byte[] data = new byte[len];
                 dataInputStream.readFully(data);
 
-                //FileOutputStream fileToStore = new FileOutputStream(System.getProperty("user.dir") + "/received_" + fileName);
-                //fileToStore.write(data);
-                //fileToStore.close();
                 System.out.println("Got file!");
             } else {
 
