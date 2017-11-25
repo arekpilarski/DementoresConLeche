@@ -13,6 +13,7 @@ import com.hackmonDB.db.controller.UserController;
 import com.hackmonDB.db.entity.Event;
 import com.hackmonDB.db.entity.Group;
 import com.hackmonDB.db.entity.Resource;
+import com.hackmonDB.db.entity.Task;
 import com.hackmonDB.db.entity.User;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -28,8 +29,12 @@ import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  *
@@ -181,6 +186,10 @@ public class SingleService
     {
          return resourceController.listResource();
     }
+      List<Task> getAllTasks()
+      {
+          return  taskController.listTasks();
+      }
    
       void  addUser(String name, String secondName, String login, String password, String email)  
     {
@@ -194,9 +203,9 @@ public class SingleService
     {
         eventController.Insert(name, date,description);
     }
-    void addTask(String name, Date date)
+    void addTask(String name)
     {
-        taskController.insert(name, date);
+        taskController.insert(name,new Date());
     }
     
     boolean checkUserExist(String login)
@@ -209,7 +218,45 @@ public class SingleService
         return false;
     }
       
-    public void realize() {
+     
+    boolean checkUserPassword(String login, String password)
+    {
+        List<User> list =userController.listUsers();;
+        for (int i = 0; i < list.size(); i++) {
+            if(list.get(i).getLogin().equals(login))
+                if(list.get(i).getPassw0rd().equals(password))
+                {
+                    return true;
+                }
+                 else
+                {
+                  return false;
+                }
+        }
+        return false;
+    }
+    
+    User findUser(String login)
+    {
+        List<User> list =userController.listUsers();
+        for (int i = 0; i < list.size(); i++) {
+            if(list.get(i).getLogin().equals(login))
+                return list.get(i);
+        }
+            return null;
+        
+    }
+         User findUser(long id)
+    {
+        List<User> list =userController.listUsers();;
+        for (int i = 0; i < list.size(); i++) {
+            if(list.get(i).getId()==id)
+                return list.get(i);
+        }
+            return null;
+        
+    }
+    public void realize() throws ParseException {
         try {
 
             while (true) {
@@ -255,6 +302,17 @@ public class SingleService
                     }
                     messageOutput.println("ENDGETEVENTS");
                 }
+                  else if(str.toUpperCase().equals("GETTASKS"))
+                {
+                     messageOutput.println("GETTASKS");
+                    messageOutput.println("STARTGETTASKS");
+                   List<Task> list= getAllTasks();
+                    for (int i = 0; i < list.size(); i++) {
+                        messageOutput.println(Long.toString( list.get(i).getId()));
+                        messageOutput.println(list.get(i).getName());                   
+                    }
+                    messageOutput.println("ENDGETTASKS");
+                }
                  else if(str.toUpperCase().equals("GETGROUPS"))
                 {
                      messageOutput.println("GETGROUPS");
@@ -288,7 +346,8 @@ public class SingleService
                      String eventName= commandInput.readLine();
                      while(!commandInput.ready()) {};
                      String dateS= commandInput.readLine();
-                     Date date = new Date(dateS);
+                     DateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
+                    Date date = format.parse(dateS);
                       while(!commandInput.ready()) {};
                      String description= commandInput.readLine();
 
@@ -300,13 +359,13 @@ public class SingleService
                      messageOutput.println("ADDTASK");                   
                      while(!commandInput.ready()) {};
                      String eventName= commandInput.readLine();
-                     while(!commandInput.ready()) {};
-                     String dateS= commandInput.readLine();
-                     Date date = new Date(dateS);
-                     addTask(eventName, date);
+                   //  while(!commandInput.ready()) {};
+                    // String dateS= commandInput.readLine();
+                    // Date date = new Date(dateS);
+                     addTask(eventName);
                       messageOutput.println("OK"); 
                 }
-                    else if(str.toUpperCase().equals("ADDTASK"))
+                    else if(str.toUpperCase().equals("ADDGROUP"))
                 {
                      messageOutput.println("ADDGROUP");                   
                      while(!commandInput.ready()) {};
@@ -336,6 +395,60 @@ public class SingleService
                          addUser(username,secondName, login, password,email);
                          messageOutput.println("OK");
                      }
+                  }
+                  else if(str.toUpperCase().equals("LOGIN"))
+                 {messageOutput.println("LOGIN");
+                 
+                     while(!commandInput.ready()) {};
+                     String login= commandInput.readLine();
+                     while(!commandInput.ready()) {};
+                     String password= commandInput.readLine(); 
+                     if(checkUserPassword(login,password))          
+                     {
+                         messageOutput.println("USEREXIST");
+                     }
+                     else
+                     {
+                         messageOutput.println("NOPE");
+                     }
+                  }
+                  else if(str.toUpperCase().equals("GETDATA"))
+                 {messageOutput.println("GETDATA");
+                     messageOutput.println("STARTGETDATA");
+                 
+                     while(!commandInput.ready()) {};
+                     String login= commandInput.readLine();
+                     User user = findUser(login);
+                     if(user!= null)
+                     {
+                        messageOutput.println(user.getName());
+                        messageOutput.println(user.getSecondName());
+                        messageOutput.println(user.getLogin());
+                        messageOutput.println(user.getEmail());
+                     }
+                     else
+                     {
+                          messageOutput.println("ENDGETDATA");
+                     }
+                     
+                  }
+                else if(str.toUpperCase().equals("DELETEEVENT"))
+                 {
+                     messageOutput.println("DELETEEVENT");
+                     while(!commandInput.ready()) {};
+                     String idS= commandInput.readLine();
+                     Long id=   Long.parseLong(idS);
+                     eventController.Delete(id); 
+                     messageOutput.println("OK");
+                  }
+                else if(str.toUpperCase().equals("DELETETASK"))
+                 {
+                     messageOutput.println("DELETETASK");
+                     while(!commandInput.ready()) {};
+                     String idS= commandInput.readLine();
+                     Long id=   Long.parseLong(idS);
+                     taskController.Delete(id); 
+                     messageOutput.println("OK");
                   }
                 System.out.println("Command: " + str);
             }

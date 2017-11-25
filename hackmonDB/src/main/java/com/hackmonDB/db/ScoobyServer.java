@@ -27,6 +27,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -69,7 +70,7 @@ public class ScoobyServer {
     }
 
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws ParseException {
 	  Socket socket = null;
         ScoobyServer tcpServer = null;
         try {

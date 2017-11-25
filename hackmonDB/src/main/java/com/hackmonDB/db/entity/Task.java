@@ -33,6 +33,10 @@ public class Task {
     private Date date;
     
     public Task(){}
+    public Task(String name)
+    {
+        this.name = name;
+    }
     public Task(String name, Date date)
     {
         this.name = name;

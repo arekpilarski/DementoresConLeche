@@ -39,6 +39,13 @@ public class TaskController {
       return "inserted";
     }
     
+    @GetMapping("/insert")
+    public String insert(String name){
+
+          taskRepository.save(new Task(name));
+      return "inserted";
+    }
+    
     @GetMapping
     public void Delete(long id)
     {
