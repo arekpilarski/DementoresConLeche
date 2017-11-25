@@ -54,7 +54,7 @@
       <JFXButton layoutX="467.0" layoutY="149.0" onAction="#fileChooserButton" prefHeight="0.0" prefWidth="104.0" style="-fx-background-color: #959595;" text="Choose file" />
       <TextField fx:id="filePath" layoutX="467.0" layoutY="189.0" prefHeight="26.0" prefWidth="310.0" promptText="Path" />
       <ImageView fitHeight="336.0" fitWidth="310.0" layoutX="172.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true" />
-      <ListView layoutX="172.0" layoutY="101.0" prefHeight="274.0" prefWidth="286.0" />
+      <ListView fx:id="listOfObjects" editable="true" layoutX="172.0" layoutY="101.0" prefHeight="274.0" prefWidth="286.0" />
       <TextField layoutX="172.0" layoutY="413.0" prefHeight="26.0" prefWidth="286.0" />
       <Label layoutX="172.0" layoutY="385.0" text="File name">
          <font>
@@ -75,5 +75,6 @@
       </Label>
       <TextField layoutX="467.0" layoutY="322.0" prefHeight="26.0" prefWidth="310.0" promptText="File name" />
       <JFXButton layoutX="467.0" layoutY="360.0" prefHeight="26.0" prefWidth="64.0" style="-fx-background-color: #959595;" text="Add" />
+      <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="590.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
