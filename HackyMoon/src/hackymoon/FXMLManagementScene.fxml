@@ -60,7 +60,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField layoutX="172.0" layoutY="169.0" prefHeight="26.0" prefWidth="309.0" />
+      <TextField fx:id="groupNameField" layoutX="172.0" layoutY="169.0" prefHeight="26.0" prefWidth="309.0" />
       <Label layoutX="172.0" layoutY="291.0" text="Group name">
          <font>
             <Font size="15.0" />
@@ -76,9 +76,9 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField layoutX="172.0" layoutY="325.0" prefHeight="26.0" prefWidth="309.0" />
-      <TextField layoutX="172.0" layoutY="396.0" prefHeight="26.0" prefWidth="309.0" />
-      <JFXButton layoutX="413.0" layoutY="212.0" prefHeight="31.0" prefWidth="67.0" style="-fx-background-color: #959595;" text="Create">
+      <TextField fx:id="groupNameUserField" layoutX="172.0" layoutY="325.0" prefHeight="26.0" prefWidth="309.0" />
+      <TextField fx:id="userNameField" layoutX="172.0" layoutY="396.0" prefHeight="26.0" prefWidth="309.0" />
+      <JFXButton layoutX="413.0" layoutY="212.0" onAction="#createGroupButton" prefHeight="31.0" prefWidth="67.0" style="-fx-background-color: #959595;" text="Create">
          <font>
             <Font size="15.0" />
          </font>
@@ -88,5 +88,6 @@
             <Font size="15.0" />
          </font>
       </JFXButton>
+      <Label fx:id="messageGroup" layoutX="172.0" layoutY="212.0" prefHeight="18.0" prefWidth="159.0" />
    </children>
 </AnchorPane>
